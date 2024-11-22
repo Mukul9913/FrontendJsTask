@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Learning Page</title>
+    <style>
+        :root{
+            --primary-color: #007bff;
+            --scrollbar-thumb-color: #888;
+            --scrollbar-track-color:#f1f1f1;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+        }
+        #main-content {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+        }
+        .video-container {
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio */
+            position: relative;
+        }
+        .kpoint-embedded-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #transcript {
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f0f0f0;
+            height: 100%;
+        }
+        #sidebar {
+            width: 20%;
+            display: flex;
+            flex-direction: column;
+        }
+        #video-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        #video-list h2 {
+            margin-top: 0;
+        }
+        #video-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .video-card {
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .video-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .video-info {
+            padding: 10px;
+            position: relative;
+        }
+        .video-titl{
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            width: 150px;
+        }
+        .play-button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color:var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-button:hover {
+            background-color:var(--primary-color);
+        }
+        #notes-container {
+            width: 25%;
+            padding: 10px;
+            background-color: #e0e0e0;
+        }
+        #notes {
+            width: 100%;
+            height: 100px;
+            resize: none;
+        }
+        #save-notes {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #save-notes:hover {
+            background-color: #45a049;
+        }
+
+        #transcript::-webkit-scrollbar,
+    #video-list::-webkit-scrollbar {
+        width: 10px;
+    }
+    #transcript::-webkit-scrollbar-track,
+    #video-list::-webkit-scrollbar-track{
+        background: var(--scrollbar-track-color);
+        border-radius: 100px;
+    }
+    #transcript::-webkit-scrollbar-thumb,
+    #video-list::-webkit-scrollbar-thumb{
+        background: var(--scrollbar-thumb-color);
+        border-radius: 100px;
+    }
+    #transcript::-webkit-scrollbar-thumb:hover,
+    #video-list::-webkit-scrollbar-thumb:hover{
+        background: #555;
+
+    }
+    #transcript,
+    #video-list{
+        scrollbar-width: thin;
+        scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+    }
+    </style>
+</head>
+<body>
+    <div id="main-content">
+        <div class="video-container">
+            <div class='kpoint-embedded-video' 
+                data-video-params='{"search": false}'
+                data-video-host='ccoe.kpoint.com' 
+                data-kvideo-id='gcc-5af651fb-597f-44d7-bd9f-5aa1d86b5711' 
+                data-samesite=true>
+            </div>
+            <div id="video-title">Current Video Title</div>
+        </div>
+        <div id="transcript">
+            <h3>Transcript</h3>
+            <p>This is where the transcript of the current video will appear. It can be scrolled if it's longer than the available space.</p>
+        </div>
+    </div>
+    <div id="sidebar">
+        <div id="video-list">
+            <h2>Next Videos</h2>
+            <ul>
+                <li class="video-card">
+                    <img src="https://placehold.co/320x180?text=Intro+to+JS" alt="Introduction to JavaScript">
+                    <div class="video-info">
+                        <h3 class="video-titl">Introduction to JavaScript</h3>
+                        <button class="play-button">▶</button>
+                    </div>
+                </li>
+                <li class="video-card">
+                    <img src="https://placehold.co/320x180?text=Variables" alt="Variables and Data Types">
+                    <div class="video-info">
+                        <h3 class="video-titl">Variables and Data Types</h3>
+                        <button class="play-button">▶</button>
+                    </div>
+                </li>
+                <li class="video-card">
+                    <img src="https://placehold.co/320x180?text=Functions" alt="Functions and Scope">
+                    <div class="video-info">
+                        <h3 class="video-titl">Functions and Scope</h3>
+                        <button class="play-button">▶</button>
+                    </div>
+                </li>
+                <li class="video-card">
+                    <img src="https://placehold.co/320x180?text=Objects+Arrays" alt="Objects and Arrays">
+                    <div class="video-info">
+                        <h3 class="video-titl">Objects and Arrays</h3>
+                        <button class="play-button">▶</button>
+                    </div>
+                </li>
+                <li class="video-card">
+                    <img src="https://placehold.co/320x180?text=DOM" alt="DOM Manipulation">
+                    <div class="video-info">
+                        <h3 class="video-titl">DOM Manipulation</h3>
+                        <button class="play-button">▶</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+        <div id="notes-container">
+            <textarea id="notes" placeholder="Enter your notes here..."></textarea>
+            <button id="save-notes">Save Notes</button>
+        </div>
+    <script type="text/javascript" src="https://ktpl.kpoint.com/assets/orca/media/embed/videofront-vega.js"></script>
+    <script>
+        // JavaScript to handle video selection
+        const videoCards = document.querySelectorAll('.video-card');
+
+videoCards.forEach(card => {
+    card.addEventListener('click', function() {
+        // Remove active class from all cards
+        videoCards.forEach(c => c.classList.remove('active'));
+        // Add active class to clicked card
+        this.classList.add('active');
+
+        // Here you would typically update the video source
+        const videoTitle = this.querySelector('.video-title').textContent;
+        console.log('Selected video:', videoTitle);
+    }
+)
+})
+
+        // Handle saving notes
+        const saveNotesButton = document.getElementById('save-notes');
+        const notesTextarea = document.getElementById('notes');
+
+        saveNotesButton.addEventListener('click', function() {
+            const notes = notesTextarea.value;
+            // Here you would typically send the notes to a server or save them locally
+            console.log('Saving notes:', notes);
+            alert('Notes saved!');
+        });
+
+        // You can add more JavaScript functionality here, such as:
+        // - Updating the transcript when a new video is selected
+        // - Implementing a progress tracker for completed videos
+    </script>
+</body>
+</html>
